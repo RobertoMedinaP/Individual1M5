@@ -31,6 +31,7 @@ public class Web extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
     }
 
     @Override
@@ -39,13 +40,21 @@ public class Web extends Fragment {
         // Inflate the layout for this fragment
         webBinding = FragmentWebBinding.inflate(inflater, container, false);
 
-
-
+        //
         webView=webBinding.wv1;
         webView.setWebViewClient(new WebViewClient());
         WebSettings webSettings= webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
-        //webView.loadUrl("https://www.google.com");
+
+
+        /* Boton salir que remueve en fragmento
+
+        webBinding.btsalir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().getSupportFragmentManager().beginTransaction().remove(Web.this).commit();
+            }
+        });*/
 
 
         return webBinding.getRoot();

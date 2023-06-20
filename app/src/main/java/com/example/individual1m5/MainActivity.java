@@ -25,13 +25,16 @@ public class MainActivity extends AppCompatActivity {
         binding.btir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //enviar("http://",binding.textField.getEditText().getText().toString());
+                //Se obtiene el texto desde el textfield
                 String url= binding.textField.getEditText().getText().toString();
+                //Se define webview, se da soporte a fragment manager, se indica ubicacion de fragmento, se muestra y se indica ubicacion del webview
                 WebView webView= (WebView)getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView3).getView().findViewById(R.id.wv1);
+                //se carga la string url
                 webView.loadUrl(url);
 
             }
         });
+
 
     }
 
