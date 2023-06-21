@@ -34,6 +34,13 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        
+        binding.button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finishAffinity();
+            }
+        });
 
 
     }
