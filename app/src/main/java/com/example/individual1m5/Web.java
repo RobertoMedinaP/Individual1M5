@@ -18,8 +18,11 @@ import com.example.individual1m5.databinding.FragmentWebBinding;
 
 public class Web extends Fragment {
 
+    private static final String ARG_PARAM1 = "param1";
+
     private FragmentWebBinding webBinding;
     private WebView webView;
+    private String urlrecibida;
 
 
     public Web() {
@@ -30,7 +33,21 @@ public class Web extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (getArguments() !=null){
+            urlrecibida= getArguments().getString(ARG_PARAM1);
 
+
+        }
+
+
+    }
+
+    public static Web newInstance(String url){
+        Web fragment= new Web();
+        Bundle args= new Bundle();
+        args.putString(ARG_PARAM1,url);
+        fragment.setArguments(args);
+        return fragment;
 
     }
 
@@ -45,24 +62,13 @@ public class Web extends Fragment {
         webView.setWebViewClient(new WebViewClient());
         WebSettings webSettings= webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
+        String url= urlrecibida;
+        webView.loadUrl(url);
 
-
-        /* Boton salir que remueve en fragmento
-
-        webBinding.btsalir.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getActivity().getSupportFragmentManager().beginTransaction().remove(Web.this).commit();
-            }
-        });*/
 
 
         return webBinding.getRoot();
 
-
     }
 
-    public void loadUrl(String url){
-        webView.loadUrl(url);
-    }
 }

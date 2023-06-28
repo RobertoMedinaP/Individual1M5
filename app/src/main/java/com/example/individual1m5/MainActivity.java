@@ -1,6 +1,8 @@
 package com.example.individual1m5;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,12 +27,7 @@ public class MainActivity extends AppCompatActivity {
         binding.btir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Se obtiene el texto desde el textfield
-                String url= binding.textField.getEditText().getText().toString();
-                //Se define webview, se da soporte a fragment manager, se indica ubicacion de fragmento, se muestra y se indica ubicacion del webview
-                WebView webView= (WebView)getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView3).getView().findViewById(R.id.wv1);
-                //se carga la string url
-                webView.loadUrl(url);
+                mostrarFragmento();
 
             }
         });
@@ -45,13 +42,18 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-       /* protected void enviar(String http, String web){
-            Intent intento = new Intent(MainActivity.this, Web.class);
-            intento.putExtra("http", http);
-            intento.putExtra("web", web);
-            startActivity(intento);
 
-        }*/
+        private void mostrarFragmento(){
+
+        Web web= Web.newInstance(binding.textField.getEditText().getText().toString());
+            FragmentManager manager=getSupportFragmentManager();
+            FragmentTransaction transaction= manager.beginTransaction();
+            transaction.replace(binding.contenedoractivity.getId(),web);
+            transaction.addToBackStack(null);
+            transaction.commit();
+
+        }
+
     }
 
 
